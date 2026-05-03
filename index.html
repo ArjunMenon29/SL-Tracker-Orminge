@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0059)file:///C:/Users/arjun/Downloads/SL-Traffik-Tracker_15.html -->
+<!-- saved from url=(0059)file:///C:/Users/arjun/Downloads/SL-Traffik-Tracker_16.html -->
 <html lang="sv"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -34,7 +34,7 @@ header{
   position:sticky;top:0;z-index:20;
 }
 .h-left{display:flex;align-items:center;gap:16px}
-.sl-logo{flex-shrink:0;width:70px;height:70px;}
+.sl-logo{flex-shrink:0;width:160px;height:58px;}
 .h-left h1{
   font-family:var(--fancy);
   font-size:48px;font-weight:700;letter-spacing:.5px;
@@ -226,20 +226,92 @@ footer{text-align:center;padding:10px 16px 24px;font-size:11px;color:var(--muted
 
 <header>
   <div class="h-left">
-    <svg class="sl-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <!-- Background -->
-      <rect width="200" height="200" fill="#000"></rect>
-      <!-- Main circle -->
-      <circle cx="100" cy="85" r="52" fill="none" stroke="#00AEEF" stroke-width="9"></circle>
-      <!-- SL text -->
-      <text x="100" y="100" text-anchor="middle" dominant-baseline="middle" font-family="&#39;Helvetica Neue&#39;,Arial,sans-serif" font-weight="700" font-size="40" fill="#00AEEF" letter-spacing="-1">SL</text>
-      <!-- Semicircular arcs below — clipped to lower half -->
-      <clippath id="lower"><rect x="0" y="85" width="200" height="115"></rect></clippath>
-      <g clip-path="url(#lower)" fill="none" stroke="#00AEEF" stroke-width="9" stroke-linecap="round">
-        <path d="M 30,85 A 70,70 0 0,0 170,85"></path>
-        <path d="M 15,85 A 85,85 0 0,0 185,85"></path>
-        <path d="M  2,85 A 98,98 0 0,0 198,85"></path>
-      </g>
+    <svg class="sl-logo" viewBox="0 0 220 80" xmlns="http://www.w3.org/2000/svg">
+      <!-- Main bus body - front section -->
+      <rect x="2" y="18" width="118" height="46" rx="5" ry="5" fill="#005A9C"></rect>
+      <!-- Main bus body - rear section (articulated) -->
+      <rect x="124" y="20" width="92" height="44" rx="5" ry="5" fill="#005A9C"></rect>
+      <!-- Articulation joint -->
+      <rect x="119" y="22" width="7" height="40" rx="2" fill="#003f6e"></rect>
+
+      <!-- Roof front -->
+      <rect x="4" y="14" width="114" height="6" rx="3" fill="#004a85"></rect>
+      <!-- Roof rear -->
+      <rect x="125" y="16" width="89" height="6" rx="3" fill="#004a85"></rect>
+
+      <!-- Front windscreen -->
+      <rect x="8" y="22" width="26" height="22" rx="2" fill="#a8d8f0"></rect>
+      <line x1="21" y1="22" x2="21" y2="44" stroke="#005A9C" stroke-width="1.5"></line>
+
+      <!-- Front section windows -->
+      <rect x="40" y="23" width="18" height="16" rx="2" fill="#a8d8f0"></rect>
+      <rect x="62" y="23" width="18" height="16" rx="2" fill="#a8d8f0"></rect>
+      <rect x="84" y="23" width="18" height="16" rx="2" fill="#a8d8f0"></rect>
+      <rect x="106" y="23" width="10" height="16" rx="2" fill="#a8d8f0"></rect>
+
+      <!-- Rear section windows -->
+      <rect x="130" y="24" width="16" height="16" rx="2" fill="#a8d8f0"></rect>
+      <rect x="150" y="24" width="16" height="16" rx="2" fill="#a8d8f0"></rect>
+      <rect x="170" y="24" width="16" height="16" rx="2" fill="#a8d8f0"></rect>
+      <rect x="190" y="24" width="16" height="16" rx="2" fill="#a8d8f0"></rect>
+
+      <!-- Blue accent stripe along side -->
+      <rect x="2" y="44" width="118" height="5" fill="#00AEEF"></rect>
+      <rect x="124" y="44" width="92" height="5" fill="#00AEEF"></rect>
+
+      <!-- Front door -->
+      <rect x="28" y="44" width="14" height="18" rx="1" fill="#003f6e"></rect>
+      <line x1="35" y1="44" x2="35" y2="62" stroke="#00AEEF" stroke-width="1"></line>
+
+      <!-- Rear door -->
+      <rect x="140" y="44" width="16" height="18" rx="1" fill="#003f6e"></rect>
+      <line x1="148" y1="44" x2="148" y2="62" stroke="#00AEEF" stroke-width="1"></line>
+
+      <!-- Front bumper/face -->
+      <rect x="2" y="52" width="7" height="12" rx="2" fill="#003f6e"></rect>
+      <!-- Headlights -->
+      <rect x="3" y="47" width="8" height="5" rx="1" fill="#fffde0"></rect>
+      <rect x="3" y="53" width="8" height="4" rx="1" fill="#ff9900" opacity="0.8"></rect>
+
+      <!-- Rear lights -->
+      <rect x="209" y="47" width="8" height="5" rx="1" fill="#ff3333" opacity="0.9"></rect>
+      <rect x="209" y="53" width="8" height="4" rx="1" fill="#ff3333" opacity="0.6"></rect>
+
+      <!-- Line number display box -->
+      <rect x="8" y="8" width="28" height="10" rx="2" fill="#ffcc00"></rect>
+      <text x="22" y="16" text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="7" fill="#000">444</text>
+
+      <!-- Destination display -->
+      <rect x="40" y="8" width="76" height="10" rx="2" fill="#1a1a1a"></rect>
+      <text x="78" y="16" text-anchor="middle" font-family="Arial,sans-serif" font-size="5.5" fill="#00AEEF" letter-spacing="0.3">VÄSTRA ORMINGE</text>
+
+      <!-- Front wheel -->
+      <circle cx="30" cy="65" r="11" fill="#1a1a1a"></circle>
+      <circle cx="30" cy="65" r="7" fill="#333"></circle>
+      <circle cx="30" cy="65" r="3.5" fill="#666"></circle>
+      <!-- Front wheel arch -->
+      <path d="M 18,58 Q 30,52 42,58" fill="none" stroke="#004a85" stroke-width="2"></path>
+
+      <!-- Rear front wheel -->
+      <circle cx="105" cy="65" r="11" fill="#1a1a1a"></circle>
+      <circle cx="105" cy="65" r="7" fill="#333"></circle>
+      <circle cx="105" cy="65" r="3.5" fill="#666"></circle>
+      <path d="M 93,58 Q 105,52 117,58" fill="none" stroke="#004a85" stroke-width="2"></path>
+
+      <!-- Rear section wheel 1 -->
+      <circle cx="152" cy="65" r="11" fill="#1a1a1a"></circle>
+      <circle cx="152" cy="65" r="7" fill="#333"></circle>
+      <circle cx="152" cy="65" r="3.5" fill="#666"></circle>
+      <path d="M 140,58 Q 152,52 164,58" fill="none" stroke="#003f6e" stroke-width="2"></path>
+
+      <!-- Rear section wheel 2 -->
+      <circle cx="196" cy="65" r="11" fill="#1a1a1a"></circle>
+      <circle cx="196" cy="65" r="7" fill="#333"></circle>
+      <circle cx="196" cy="65" r="3.5" fill="#666"></circle>
+      <path d="M 184,58 Q 196,52 208,58" fill="none" stroke="#003f6e" stroke-width="2"></path>
+
+      <!-- Ground shadow -->
+      <ellipse cx="110" cy="77" rx="108" ry="3" fill="rgba(0,0,0,0.2)"></ellipse>
     </svg>
     <div>
       <h1>SL Traffik Tracker</h1>
@@ -248,15 +320,15 @@ footer{text-align:center;padding:10px 16px 24px;font-size:11px;color:var(--muted
   </div>
   <div class="datetime">
     <div class="date" id="date">Sunday, 3 May 2026</div>
-    <div class="time" id="clock">12:21:45</div>
+    <div class="time" id="clock">12:48:51</div>
   </div>
 </header>
 
 <div class="statusbar">
   <div class="dot ok" id="dot"></div>
-  <span id="stxt">Uppdaterad 12:21</span>
+  <span id="stxt">Uppdaterad 12:48</span>
   <button class="rfbtn" onclick="fetchAll()">↻ Uppdatera</button>
-  <span id="cdtxt" style="margin-left:4px">· om 16s</span>
+  <span id="cdtxt" style="margin-left:4px">· om 47s</span>
 </div>
 
 <main>
@@ -274,53 +346,23 @@ footer{text-align:center;padding:10px 16px 24px;font-size:11px;color:var(--muted
     <div class="dir-icon city">↗</div>
     <span class="dir-label city">Towards City</span>
   </div><div class="row">
-    <div class="lbadge city-line">444</div>
+    <div class="lbadge city-line">471</div>
     <div class="dest">
       <div class="d">Slussen</div>
       
     </div>
     <div class="tcountdown">
-      <div class="tprimary ">11 min</div>
+      <div class="tprimary now">Nu</div>
     </div>
-    <div class="ttime ">12:32</div>
+    <div class="ttime ">12:48</div>
   </div><div class="row">
-    <div class="lbadge city-line">471</div>
+    <div class="lbadge city-line">444</div>
     <div class="dest">
       <div class="d">Slussen</div>
       
     </div>
     <div class="tcountdown">
       <div class="tprimary ">13 min</div>
-    </div>
-    <div class="ttime ">12:34</div>
-  </div><div class="row">
-    <div class="lbadge city-line">444</div>
-    <div class="dest">
-      <div class="d">Slussen</div>
-      
-    </div>
-    <div class="tcountdown">
-      <div class="tprimary ">26 min</div>
-    </div>
-    <div class="ttime ">12:47</div>
-  </div><div class="row">
-    <div class="lbadge city-line">471</div>
-    <div class="dest">
-      <div class="d">Slussen</div>
-      
-    </div>
-    <div class="tcountdown">
-      <div class="tprimary ">28 min</div>
-    </div>
-    <div class="ttime ">12:49</div>
-  </div><div class="row">
-    <div class="lbadge city-line">444</div>
-    <div class="dest">
-      <div class="d">Slussen</div>
-      
-    </div>
-    <div class="tcountdown">
-      <div class="tprimary ">41 min</div>
     </div>
     <div class="ttime ">13:02</div>
   </div><div class="row">
@@ -330,9 +372,39 @@ footer{text-align:center;padding:10px 16px 24px;font-size:11px;color:var(--muted
       
     </div>
     <div class="tcountdown">
-      <div class="tprimary ">43 min</div>
+      <div class="tprimary ">16 min</div>
     </div>
     <div class="ttime ">13:04</div>
+  </div><div class="row">
+    <div class="lbadge city-line">444</div>
+    <div class="dest">
+      <div class="d">Slussen</div>
+      
+    </div>
+    <div class="tcountdown">
+      <div class="tprimary ">28 min</div>
+    </div>
+    <div class="ttime ">13:17</div>
+  </div><div class="row">
+    <div class="lbadge city-line">471</div>
+    <div class="dest">
+      <div class="d">Slussen</div>
+      
+    </div>
+    <div class="tcountdown">
+      <div class="tprimary ">31 min</div>
+    </div>
+    <div class="ttime ">13:19</div>
+  </div><div class="row">
+    <div class="lbadge city-line">444</div>
+    <div class="dest">
+      <div class="d">Slussen</div>
+      
+    </div>
+    <div class="tcountdown">
+      <div class="tprimary ">43 min</div>
+    </div>
+    <div class="ttime ">13:32</div>
   </div></div>
     </div>
   </div>
@@ -351,15 +423,25 @@ footer{text-align:center;padding:10px 16px 24px;font-size:11px;color:var(--muted
     <div class="dir-icon city">↗</div>
     <span class="dir-label city">Towards City</span>
   </div><div class="row">
-    <div class="lbadge city-line">444</div>
+    <div class="lbadge city-line">422</div>
     <div class="dest">
-      <div class="d">Slussen</div>
+      <div class="d">Gustavsberg Lugnet</div>
       
     </div>
     <div class="tcountdown">
-      <div class="tprimary now">1 min</div>
+      <div class="tprimary late">Nu</div>
     </div>
-    <div class="ttime ">12:22</div>
+    <div class="ttime late">12:47</div>
+  </div><div class="row">
+    <div class="lbadge city-line">416</div>
+    <div class="dest">
+      <div class="d">Telegrafberget</div>
+      
+    </div>
+    <div class="tcountdown">
+      <div class="tprimary late">Nu</div>
+    </div>
+    <div class="ttime late">12:47</div>
   </div><div class="row">
     <div class="lbadge city-line">422</div>
     <div class="dest">
@@ -367,11 +449,11 @@ footer{text-align:center;padding:10px 16px 24px;font-size:11px;color:var(--muted
       
     </div>
     <div class="tcountdown">
-      <div class="tprimary late">1 min</div>
+      <div class="tprimary late">2 min</div>
     </div>
-    <div class="ttime late">12:22</div>
+    <div class="ttime late">12:50</div>
   </div><div class="row">
-    <div class="lbadge city-line">471</div>
+    <div class="lbadge city-line">444</div>
     <div class="dest">
       <div class="d">Slussen</div>
       
@@ -379,37 +461,7 @@ footer{text-align:center;padding:10px 16px 24px;font-size:11px;color:var(--muted
     <div class="tcountdown">
       <div class="tprimary late">5 min</div>
     </div>
-    <div class="ttime late">12:26</div>
-  </div><div class="row">
-    <div class="lbadge city-line">417</div>
-    <div class="dest">
-      <div class="d">Hasseludden</div>
-      
-    </div>
-    <div class="tcountdown">
-      <div class="tprimary ">6 min</div>
-    </div>
-    <div class="ttime ">12:27</div>
-  </div><div class="row">
-    <div class="lbadge city-line">444</div>
-    <div class="dest">
-      <div class="d">Slussen</div>
-      
-    </div>
-    <div class="tcountdown">
-      <div class="tprimary ">17 min</div>
-    </div>
-    <div class="ttime ">12:38</div>
-  </div><div class="row">
-    <div class="lbadge city-line">414</div>
-    <div class="dest">
-      <div class="d">Slussen</div>
-      
-    </div>
-    <div class="tcountdown">
-      <div class="tprimary ">18 min</div>
-    </div>
-    <div class="ttime ">12:39</div>
+    <div class="ttime late">12:54</div>
   </div><div class="row">
     <div class="lbadge city-line">471</div>
     <div class="dest">
@@ -417,19 +469,39 @@ footer{text-align:center;padding:10px 16px 24px;font-size:11px;color:var(--muted
       
     </div>
     <div class="tcountdown">
-      <div class="tprimary ">19 min</div>
+      <div class="tprimary late">7 min</div>
     </div>
-    <div class="ttime ">12:40</div>
+    <div class="ttime late">12:55</div>
   </div><div class="row">
-    <div class="lbadge city-line">422</div>
+    <div class="lbadge city-line">418</div>
     <div class="dest">
-      <div class="d">Gustavsberg Lugnet</div>
+      <div class="d">Gustavsvik</div>
       
     </div>
     <div class="tcountdown">
-      <div class="tprimary late">22 min</div>
+      <div class="tprimary ">14 min</div>
     </div>
-    <div class="ttime late">12:42</div>
+    <div class="ttime ">13:03</div>
+  </div><div class="row">
+    <div class="lbadge city-line">421</div>
+    <div class="dest">
+      <div class="d">Kummelnäs Vikingshill</div>
+      
+    </div>
+    <div class="tcountdown">
+      <div class="tprimary ">14 min</div>
+    </div>
+    <div class="ttime ">13:03</div>
+  </div><div class="row">
+    <div class="lbadge city-line">444</div>
+    <div class="dest">
+      <div class="d">Slussen</div>
+      
+    </div>
+    <div class="tcountdown">
+      <div class="tprimary ">19 min</div>
+    </div>
+    <div class="ttime ">13:08</div>
   </div></div>
     </div>
   </div>
@@ -449,18 +521,18 @@ footer{text-align:center;padding:10px 16px 24px;font-size:11px;color:var(--muted
         <div id="fs-skarpo"><div class="row">
         <div class="lbadge from-line">471</div>
         <div class="dest"><div class="d">Västra Orminge</div></div>
-        <div class="tcountdown"><div class="tprimary now">2 min</div></div>
-        <div class="ttime ">12:23</div>
-      </div><div class="row">
-        <div class="lbadge from-line">471</div>
-        <div class="dest"><div class="d">Västra Orminge</div></div>
-        <div class="tcountdown"><div class="tprimary ">17 min</div></div>
-        <div class="ttime ">12:38</div>
-      </div><div class="row">
-        <div class="lbadge from-line">471</div>
-        <div class="dest"><div class="d">Västra Orminge</div></div>
-        <div class="tcountdown"><div class="tprimary ">32 min</div></div>
+        <div class="tcountdown"><div class="tprimary soon">4 min</div></div>
         <div class="ttime ">12:53</div>
+      </div><div class="row">
+        <div class="lbadge from-line">471</div>
+        <div class="dest"><div class="d">Västra Orminge</div></div>
+        <div class="tcountdown"><div class="tprimary ">19 min</div></div>
+        <div class="ttime ">13:08</div>
+      </div><div class="row">
+        <div class="lbadge from-line">471</div>
+        <div class="dest"><div class="d">Västra Orminge</div></div>
+        <div class="tcountdown"><div class="tprimary ">34 min</div></div>
+        <div class="ttime ">13:23</div>
       </div></div>
       </div>
       <div class="fs-col">
@@ -468,33 +540,33 @@ footer{text-align:center;padding:10px 16px 24px;font-size:11px;color:var(--muted
         <div id="fs-orminge"><div class="row">
         <div class="lbadge from-line">444</div>
         <div class="dest"><div class="d">Västra Orminge</div></div>
-        <div class="tcountdown"><div class="tprimary now">Nu</div></div>
-        <div class="ttime ">12:21</div>
-      </div><div class="row">
-        <div class="lbadge from-line">471</div>
-        <div class="dest"><div class="d">Västra Orminge</div></div>
         <div class="tcountdown"><div class="tprimary now">2 min</div></div>
-        <div class="ttime ">12:23</div>
-      </div><div class="row">
-        <div class="lbadge from-line">444</div>
-        <div class="dest"><div class="d">Västra Orminge</div></div>
-        <div class="tcountdown"><div class="tprimary ">15 min</div></div>
-        <div class="ttime ">12:36</div>
-      </div><div class="row">
-        <div class="lbadge from-line">471</div>
-        <div class="dest"><div class="d">Västra Orminge</div></div>
-        <div class="tcountdown"><div class="tprimary ">17 min</div></div>
-        <div class="ttime ">12:38</div>
-      </div><div class="row">
-        <div class="lbadge from-line">444</div>
-        <div class="dest"><div class="d">Västra Orminge</div></div>
-        <div class="tcountdown"><div class="tprimary ">30 min</div></div>
         <div class="ttime ">12:51</div>
       </div><div class="row">
         <div class="lbadge from-line">471</div>
         <div class="dest"><div class="d">Västra Orminge</div></div>
-        <div class="tcountdown"><div class="tprimary ">32 min</div></div>
+        <div class="tcountdown"><div class="tprimary soon">4 min</div></div>
         <div class="ttime ">12:53</div>
+      </div><div class="row">
+        <div class="lbadge from-line">444</div>
+        <div class="dest"><div class="d">Västra Orminge</div></div>
+        <div class="tcountdown"><div class="tprimary ">17 min</div></div>
+        <div class="ttime ">13:06</div>
+      </div><div class="row">
+        <div class="lbadge from-line">471</div>
+        <div class="dest"><div class="d">Västra Orminge</div></div>
+        <div class="tcountdown"><div class="tprimary ">19 min</div></div>
+        <div class="ttime ">13:08</div>
+      </div><div class="row">
+        <div class="lbadge from-line">444</div>
+        <div class="dest"><div class="d">Västra Orminge</div></div>
+        <div class="tcountdown"><div class="tprimary ">32 min</div></div>
+        <div class="ttime ">13:21</div>
+      </div><div class="row">
+        <div class="lbadge from-line">471</div>
+        <div class="dest"><div class="d">Västra Orminge</div></div>
+        <div class="tcountdown"><div class="tprimary ">34 min</div></div>
+        <div class="ttime ">13:23</div>
       </div></div>
       </div>
     </div>
