@@ -170,7 +170,6 @@ footer{text-align:center;padding:12px 16px 24px;font-size:11px;color:var(--muted
     <label>&#128205; Viewing stop</label>
     <select class="stop-select" id="stopSelect" onchange="onStopChange()">
       <optgroup label="&#8599; Towards City stops">
-        <option value="vastram">V&auml;stra Orminge (Terminus)</option>
         <option value="namdostigen">N&auml;md&ouml;stigen</option>
         <option value="husarostigen">Hus&auml;r&ouml;stigen</option>
         <option value="korsostigen">Kors&ouml;stigen</option>
@@ -255,15 +254,16 @@ footer{text-align:center;padding:12px 16px 24px;font-size:11px;color:var(--muted
    siteId: null means resolved at runtime via SL API
    ════════════════════════════════════════════════════ */
 const STOPS_DEF = {
-  vastram:      {name:'Västra Orminge',    siteId:'9527', search:'Västra Orminge'},
-  namdostigen:  {name:'Nämdöstigen',       siteId:'9528', search:'Nämdöstigen'},
-  husarostigen: {name:'Husaröstigen',      siteId:'9529', search:'Husaröstigen'},
-  korsostigen:  {name:'Korsöstigen',       siteId:'9530', search:'Korsöstigen'},
-  skarpo:       {name:'Skarpövägen',       siteId:null,   search:'Skarpövägen'},
-  korset:       {name:'Korset',            siteId:null,   search:'Korset'},
-  sarvtrask:    {name:'Sarvträsk',         siteId:null,   search:'Sarvträsk'},
-  orminge:      {name:'Orminge centrum',   siteId:null,   search:'Orminge centrum'},
+  namdostigen:  {name:'Nämdöstigen',     siteId:null, search:'Nämdöstigen'},
+  husarostigen: {name:'Husaröstigen',    siteId:null, search:'Husaröstigen'},
+  korsostigen:  {name:'Korsöstigen',     siteId:null, search:'Korsöstigen'},
+  skarpo:       {name:'Skarpövägen',     siteId:null, search:'Skarpövägen'},
+  korset:       {name:'Korset',          siteId:null, search:'Korset'},
+  sarvtrask:    {name:'Sarvträsk',       siteId:null, search:'Sarvträsk'},
+  orminge:      {name:'Orminge centrum', siteId:null, search:'Orminge centrum'},
 };
+/* All site IDs resolved once at startup from SL API */
+let sitesListCache = null;
 
 const SL          = 'https://transport.integration.sl.se/v1';
 const SLUSSEN_ID  = '9192';
@@ -351,22 +351,67 @@ async function slFetch(url){
   return JSON.parse(txt);
 }
 
+/* ── Load all site IDs at startup ── */
+async function loadSitesList(){
+  if(sitesListCache)return sitesListCache;
+  const data=await slFetch(SL+'/sites?expand=false');
+  if(!Array.isArray(data))throw new Error('Sites list invalid');
+  sitesListCache=data;
+  return data;
+}
+
 /* ── Resolve site ID for a stop key ── */
 async function resolveSiteId(stopKey){
   if(resolvedIds[stopKey])return resolvedIds[stopKey];
   const def=STOPS_DEF[stopKey];
-  if(def.siteId){resolvedIds[stopKey]=def.siteId;return def.siteId;}
-  /* Fetch sites list and find by name */
   try{
-    const sites=await slFetch(SL+'/sites?expand=false');
-    if(!Array.isArray(sites))throw new Error('Bad response');
+    const sites=await loadSitesList();
     const needle=def.search.toLowerCase();
-    const exact=sites.find(s=>s.name&&s.name.toLowerCase()===needle);
-    const partial=sites.find(s=>s.name&&s.name.toLowerCase().includes(needle));
-    const match=exact||partial;
-    if(match){resolvedIds[stopKey]=String(match.id);return resolvedIds[stopKey];}
-  }catch(e){console.warn('resolveSiteId failed for',stopKey,e);}
-  return null;
+    /* All exact name matches first, then partial */
+    const exact  =sites.filter(s=>s.name&&s.name.toLowerCase()===needle);
+    const partial=sites.filter(s=>s.name&&s.name.toLowerCase().includes(needle)&&s.name.toLowerCase()!==needle);
+    const candidates=[...exact,...partial];
+    if(!candidates.length){console.warn('No candidates for',def.search);return null;}
+    /* If only one candidate, use it */
+    if(candidates.length===1){
+      resolvedIds[stopKey]=String(candidates[0].id);
+      console.log('Resolved',def.search,'->',candidates[0].id,candidates[0].name);
+      return resolvedIds[stopKey];
+    }
+    /* Multiple candidates: verify by checking for lines 444/471/446 */
+    for(const c of candidates.slice(0,6)){
+      try{
+        const dep=await slFetch(SL+'/sites/'+c.id+'/departures');
+        const lines=new Set((dep.departures||[]).map(d=>d.line&&d.line.designation).filter(Boolean));
+        if(lines.has('444')||lines.has('471')||lines.has('446')){
+          resolvedIds[stopKey]=String(c.id);
+          console.log('Verified',def.search,'->',c.id,c.name,'lines:',[...lines].slice(0,5).join(','));
+          return resolvedIds[stopKey];
+        }
+      }catch(e){continue;}
+    }
+    /* Fallback to first candidate */
+    resolvedIds[stopKey]=String(candidates[0].id);
+    console.warn('Fallback',def.search,'->',candidates[0].id);
+    return resolvedIds[stopKey];
+  }catch(e){
+    console.error('resolveSiteId failed for',stopKey,e);
+    return null;
+  }
+}
+
+/* ── Resolve ALL stop IDs upfront at startup ── */
+async function resolveAllStops(){
+  try{
+    await loadSitesList(); /* fetch once */
+    /* Resolve all stops in parallel */
+    await Promise.allSettled(
+      Object.keys(STOPS_DEF).map(key=>resolveSiteId(key))
+    );
+    console.log('All stops resolved:',resolvedIds);
+  }catch(e){
+    console.error('resolveAllStops failed:',e);
+  }
 }
 
 /* ── Build one departure row ── */
@@ -451,14 +496,16 @@ function onStopChange(){
 }
 
 /* ── Main fetch ── */
+let firstRun=true;
 async function fetchAll(){
   if(rfTimer){clearTimeout(rfTimer);rfTimer=null;}
   setStatus('spin','H\u00e4mtar avg\u00e5ngar\u2026');
 
-  let anyErr=false;
+
+  if(firstRun){firstRun=false;setStatus('spin','Hittar hållplatser…');await resolveAllStops();setStatus('spin','Hämtar avgångar…');}  let anyErr=false;
 
   /* Resolve site ID for selected stop */
-  const siteId=await resolveSiteId(currentStopKey);
+  const siteId=resolvedIds[currentStopKey]||await resolveSiteId(currentStopKey);
 
   /* Towards City */
   if(siteId){
