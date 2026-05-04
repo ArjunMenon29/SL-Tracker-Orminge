@@ -1,225 +1,114 @@
 <!DOCTYPE html>
-<!-- saved from url=(0059)file:///C:/Users/arjun/Downloads/SL-Traffik-Tracker_16.html -->
-<html lang="sv"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="SL Traffik Tracker">
 <title>SL Traffik Tracker</title>
-<link rel="preconnect" href="https://fonts.googleapis.com/">
-<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-<link href="./SL Traffik Tracker_files/css2" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Cormorant+Garamond:ital@1&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#080d1a;--surface:#0f1623;--surface2:#171f30;--border:#1e2d47;
   --text:#edf2ff;--muted:#6b7fa3;--accent:#4f8ef7;--green:#22c55e;
   --yellow:#f59e0b;--red:#ef4444;--radius:16px;
-  --city-color:#60a5fa;
-  --fancy:'Playfair Display',Georgia,serif;
-  --fancy-sub:'Cormorant Garamond',Georgia,serif;
 }
-html,body{height:100%;overflow-x:hidden}
-body{
-  background:var(--bg);color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',Arial,sans-serif;
-  -webkit-font-smoothing:antialiased;
-}
+html,body{overflow-x:hidden}
+body{background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;}
 
-/* ── Header ── */
-header{
-  background:var(--surface);border-bottom:1px solid var(--border);
-  padding:16px 24px 14px;display:flex;align-items:center;justify-content:space-between;
-  position:sticky;top:0;z-index:20;
-}
-.h-left{display:flex;align-items:center;gap:16px}
-.sl-logo{flex-shrink:0;width:160px;height:58px;}
-.h-left h1{
-  font-family:var(--fancy);
-  font-size:48px;font-weight:700;letter-spacing:.5px;
+/* Header */
+header{background:var(--surface);border-bottom:1px solid var(--border);
+  padding:12px 22px;display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:20;}
+.h-left{display:flex;align-items:center;gap:14px}
+.sl-logo{flex-shrink:0;width:140px;height:50px;}
+.h-left h1{font-family:'Playfair Display',Georgia,serif;font-size:40px;font-weight:700;
   background:linear-gradient(120deg,#e0e8ff 0%,#93c5fd 45%,#c4b5fd 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  line-height:1.05;
-}
-.h-left p{
-  font-family:var(--fancy-sub);
-  font-size:15px;font-style:italic;
-  color:var(--muted);margin-top:5px;letter-spacing:.3px;
-}
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.05;}
+.h-left p{font-family:'Cormorant Garamond',Georgia,serif;font-size:14px;font-style:italic;
+  color:var(--muted);margin-top:3px;}
+.datetime{text-align:right}
+.datetime .date{font-size:13px;color:var(--muted);margin-bottom:2px}
+.datetime .time{font-size:28px;font-weight:200;letter-spacing:2px;font-variant-numeric:tabular-nums}
 
-/* Date + clock block */
-.datetime{text-align:right;line-height:1.2}
-.datetime .date{font-size:13px;color:var(--muted);font-weight:400;margin-bottom:2px}
-.datetime .time{font-size:30px;font-weight:200;letter-spacing:2px;font-variant-numeric:tabular-nums}
-
-/* ── Status bar ── */
-.statusbar{
-  display:flex;align-items:center;gap:8px;padding:7px 20px;
+/* Statusbar */
+.statusbar{display:flex;align-items:center;gap:10px;padding:6px 20px;flex-wrap:wrap;
   background:rgba(15,22,35,.97);border-bottom:1px solid var(--border);
-  font-size:12px;color:var(--muted);position:sticky;top:90px;z-index:19;
-}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--muted);flex-shrink:0;transition:background .3s}
-.dot.ok{background:var(--green)}
-.dot.spin{background:var(--yellow);animation:blink 1s infinite}
+  font-size:12px;color:var(--muted);position:sticky;top:82px;z-index:19;}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--muted);flex-shrink:0;}
+.dot.ok{background:var(--green)}.dot.spin{background:var(--yellow);animation:pulse 1s infinite}
 .dot.err{background:var(--red)}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
-.rfbtn{
-  margin-left:auto;
-  background:#16a34a;border:1px solid #22c55e;
-  color:#fff;border-radius:10px;padding:8px 20px;font-size:14px;font-weight:600;
-  cursor:pointer;transition:all .18s;white-space:nowrap;
-  box-shadow:0 2px 10px rgba(34,197,94,.25);
-}
-.rfbtn:hover{background:#15803d;box-shadow:0 2px 14px rgba(34,197,94,.4);}
-.rfbtn:active{background:#14532d;transform:scale(.97);}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.rfbtn{margin-left:auto;background:#16a34a;border:1px solid #22c55e;color:#fff;
+  border-radius:9px;padding:6px 16px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;}
 
-/* ── Main layout: both stops side by side ── */
-main{
-  display:grid;grid-template-columns:1fr 1fr;gap:16px;
-  padding:16px;max-width:1400px;margin:0 auto;
-  align-items:start;
-}
-@media(max-width:700px){main{grid-template-columns:1fr}}
+/* Stop selector */
+.selector-wrap{padding:14px 16px 0;max-width:1400px;margin:0 auto;}
+.selector-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:16px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.selector-card label{font-size:13px;font-weight:700;color:var(--muted);
+  letter-spacing:.5px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.stop-select{
+  flex:1;min-width:240px;
+  background:var(--surface2);border:2px solid var(--accent);color:var(--text);
+  border-radius:11px;padding:12px 44px 12px 16px;font-size:17px;font-weight:600;
+  font-family:inherit;outline:none;cursor:pointer;
+  -webkit-appearance:none;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%234f8ef7' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+  box-shadow:0 0 0 1px rgba(79,142,247,.25),0 4px 14px rgba(79,142,247,.12);
+  transition:border-color .2s,box-shadow .2s;}
+.stop-select:focus{border-color:#93c5fd;box-shadow:0 0 0 3px rgba(79,142,247,.25);}
+.stop-select option{background:#0f1623;color:var(--text);}
+.sel-note{font-size:12px;color:var(--muted);margin-top:6px;width:100%;}
 
-/* ── Each stop = card filling its grid cell ── */
-.stop-block{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius);overflow:hidden;
-}
+/* Cards */
+.wrap{padding:12px 16px 0;max-width:1400px;margin:0 auto;}
+.wrap:last-of-type{padding-bottom:20px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.card-head{padding:11px 18px 9px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:10px;}
+.ch-icon{width:22px;height:22px;border-radius:50%;flex-shrink:0;font-size:13px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;}
+.ch-icon.city{background:rgba(96,165,250,.18);color:#60a5fa;border:1px solid rgba(96,165,250,.3);}
+.ch-icon.from{background:rgba(167,139,250,.18);color:#a78bfa;border:1px solid rgba(167,139,250,.3);}
+.ch-title{font-size:15px;font-weight:600;}
+.ch-sub{font-size:12px;color:var(--muted);margin-left:3px;}
+.cols{display:grid;grid-template-columns:1fr 1fr;}
+@media(max-width:600px){.cols{grid-template-columns:1fr}}
+.col{display:flex;flex-direction:column;}
+.col+.col{border-left:1px solid var(--border);}
+@media(max-width:600px){.col+.col{border-left:none;border-top:1px solid var(--border);}}
+.col-head{padding:7px 14px 5px;border-bottom:1px solid rgba(30,45,71,.6);
+  font-size:10px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;color:var(--muted);}
 
-/* Stop header row */
-.stop-head{
-  padding:14px 18px 10px;border-bottom:1px solid var(--border);
-  display:flex;align-items:center;justify-content:space-between;
-}
-.stop-head .name{font-size:18px;font-weight:600;letter-spacing:-.2px}
-.stop-head .area{font-size:12px;color:var(--muted);margin-top:3px}
-.badge{
-  font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;
-  white-space:nowrap;letter-spacing:.3px;flex-shrink:0;
-}
-.badge-b{background:rgba(79,142,247,.15);color:#93c5fd;border:1px solid rgba(79,142,247,.3)}
-.badge-g{background:rgba(34,197,94,.15);color:#86efac;border:1px solid rgba(34,197,94,.3)}
-
-/* ── Single direction panel (Towards City only) ── */
-.dir-row{
-  display:block;
-  min-height:120px;
-}
-
-.dir-panel{display:flex;flex-direction:column;}
-
-
-/* Direction label strip */
-.dir-header{
-  display:flex;align-items:center;gap:8px;
-  padding:9px 14px 7px;border-bottom:1px solid rgba(30,45,71,.6);
-}
-.dir-icon{
-  font-size:12px;font-weight:700;
-  width:20px;height:20px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
-.dir-icon.city{
-  background:rgba(96,165,250,.18);color:var(--city-color);
-  border:1px solid rgba(96,165,250,.35);
-}
-
-.dir-label{font-size:10px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;}
-.dir-label.city{color:var(--city-color)}
-
-
-/* ── Departure rows ── */
-/* 4 cols: line badge | destination | countdown | clock time */
-.row{
-  display:grid;grid-template-columns:48px 1fr 62px 52px;
-  align-items:center;gap:6px;padding:8px 14px;
-  border-bottom:1px solid rgba(30,45,71,.5);
-}
+/* Rows */
+.row{display:grid;grid-template-columns:50px 1fr 60px 50px;align-items:center;
+  gap:6px;padding:8px 14px;border-bottom:1px solid rgba(30,45,71,.5);}
 .row:last-child{border-bottom:none}
-.lbadge{
-  font-size:13px;font-weight:700;text-align:center;padding:4px 2px;
-  border-radius:7px;background:var(--surface2);border:1px solid var(--border);
-  color:var(--text);
-}
-.lbadge.city-line{
-  background:rgba(96,165,250,.13);border-color:rgba(96,165,250,.3);color:#93c5fd;
-}
-.lbadge.from-line{
-  background:rgba(167,139,250,.13);border-color:rgba(167,139,250,.3);color:#c4b5fd;
-}
-
+.lb{font-size:13px;font-weight:700;text-align:center;padding:4px 2px;border-radius:7px;
+  background:var(--surface2);border:1px solid var(--border);color:var(--text);}
+.lb.city-line{background:rgba(96,165,250,.13);border-color:rgba(96,165,250,.3);color:#93c5fd;}
+.lb.from-line{background:rgba(167,139,250,.13);border-color:rgba(167,139,250,.3);color:#c4b5fd;}
 .dest{min-width:0}
 .dest .d{font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.dest .v{font-size:11px;color:var(--muted);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-/* Countdown column */
-.tcountdown{text-align:right}
-.tprimary{font-size:16px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.3px}
-.tprimary.soon{color:var(--yellow)}
-.tprimary.now{color:var(--green);font-size:13px;letter-spacing:.3px}
-.tprimary.late{color:var(--red)}
-/* Clock time column */
-.ttime{
-  text-align:right;
-  font-size:13px;font-weight:400;font-variant-numeric:tabular-nums;
-  color:var(--muted);letter-spacing:.3px;
-  border-left:1px solid rgba(30,45,71,.8);
-  padding-left:6px;
-}
-.ttime.late{color:var(--red)}
-
-/* ── States ── */
-.msg{padding:20px 14px;text-align:center;color:var(--muted);font-size:12px;}
-.loader{display:flex;align-items:center;justify-content:center;padding:32px 14px}
-.spinner{
-  width:24px;height:24px;border:2px solid var(--border);
-  border-top-color:var(--accent);border-radius:50%;animation:spin .75s linear infinite;
-}
+.tc{text-align:right}
+.tp{font-size:16px;font-weight:700;font-variant-numeric:tabular-nums;}
+.tp.now{color:var(--green);font-size:13px;letter-spacing:.3px}
+.tp.soon{color:var(--yellow)}
+.tp.late{color:var(--red)}
+.tt{text-align:right;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;
+  border-left:1px solid rgba(30,45,71,.8);padding-left:5px;}
+.msg{padding:18px 14px;text-align:center;color:var(--muted);font-size:13px;}
+.loader{display:flex;align-items:center;justify-content:center;padding:24px 14px}
+.spinner{width:22px;height:22px;border:2px solid var(--border);
+  border-top-color:var(--accent);border-radius:50%;animation:spin .75s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg)}}
-.devbanner{
-  margin:5px 10px;padding:6px 10px;
-  background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);
-  border-radius:7px;font-size:11px;color:#fcd34d;line-height:1.5;
-}
-footer{text-align:center;padding:10px 16px 24px;font-size:11px;color:var(--muted);opacity:.5}
-
-/* ── From Slussen section ── */
-.from-slussen{
-  padding:0 16px 16px;max-width:1400px;margin:0 auto;
-}
-.from-slussen-card{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius);overflow:hidden;
-}
-.from-slussen-head{
-  padding:12px 18px 10px;border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:10px;
-}
-.from-slussen-head .fs-title{font-size:15px;font-weight:600;}
-.from-slussen-head .fs-sub{font-size:12px;color:var(--muted);margin-left:4px;}
-.fs-icon{
-  width:20px;height:20px;border-radius:50%;flex-shrink:0;
-  background:rgba(167,139,250,.18);color:#c4b5fd;
-  border:1px solid rgba(167,139,250,.35);
-  display:flex;align-items:center;justify-content:center;
-  font-size:12px;font-weight:700;
-}
-.from-slussen-cols{
-  display:grid;grid-template-columns:1fr 1fr;
-}
-@media(max-width:700px){.from-slussen-cols{grid-template-columns:1fr}}
-.fs-col{display:flex;flex-direction:column;}
-.fs-col+.fs-col{border-left:1px solid var(--border);}
-.fs-col-head{
-  padding:8px 14px 6px;border-bottom:1px solid rgba(30,45,71,.6);
-  font-size:10px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;
-  color:var(--muted);
-}
-@media(max-width:700px){
-  .fs-col+.fs-col{border-left:none;border-top:1px solid var(--border);}
-}
-
+footer{text-align:center;padding:12px 16px 24px;font-size:11px;color:var(--muted);opacity:.4}
 </style>
 </head>
 <body>
@@ -227,380 +116,181 @@ footer{text-align:center;padding:10px 16px 24px;font-size:11px;color:var(--muted
 <header>
   <div class="h-left">
     <svg class="sl-logo" viewBox="0 0 220 80" xmlns="http://www.w3.org/2000/svg">
-      <!-- Main bus body - front section -->
-      <rect x="2" y="18" width="118" height="46" rx="5" ry="5" fill="#005A9C"></rect>
-      <!-- Main bus body - rear section (articulated) -->
-      <rect x="124" y="20" width="92" height="44" rx="5" ry="5" fill="#005A9C"></rect>
-      <!-- Articulation joint -->
-      <rect x="119" y="22" width="7" height="40" rx="2" fill="#003f6e"></rect>
-
-      <!-- Roof front -->
-      <rect x="4" y="14" width="114" height="6" rx="3" fill="#004a85"></rect>
-      <!-- Roof rear -->
-      <rect x="125" y="16" width="89" height="6" rx="3" fill="#004a85"></rect>
-
-      <!-- Front windscreen -->
-      <rect x="8" y="22" width="26" height="22" rx="2" fill="#a8d8f0"></rect>
-      <line x1="21" y1="22" x2="21" y2="44" stroke="#005A9C" stroke-width="1.5"></line>
-
-      <!-- Front section windows -->
-      <rect x="40" y="23" width="18" height="16" rx="2" fill="#a8d8f0"></rect>
-      <rect x="62" y="23" width="18" height="16" rx="2" fill="#a8d8f0"></rect>
-      <rect x="84" y="23" width="18" height="16" rx="2" fill="#a8d8f0"></rect>
-      <rect x="106" y="23" width="10" height="16" rx="2" fill="#a8d8f0"></rect>
-
-      <!-- Rear section windows -->
-      <rect x="130" y="24" width="16" height="16" rx="2" fill="#a8d8f0"></rect>
-      <rect x="150" y="24" width="16" height="16" rx="2" fill="#a8d8f0"></rect>
-      <rect x="170" y="24" width="16" height="16" rx="2" fill="#a8d8f0"></rect>
-      <rect x="190" y="24" width="16" height="16" rx="2" fill="#a8d8f0"></rect>
-
-      <!-- Blue accent stripe along side -->
-      <rect x="2" y="44" width="118" height="5" fill="#00AEEF"></rect>
-      <rect x="124" y="44" width="92" height="5" fill="#00AEEF"></rect>
-
-      <!-- Front door -->
-      <rect x="28" y="44" width="14" height="18" rx="1" fill="#003f6e"></rect>
-      <line x1="35" y1="44" x2="35" y2="62" stroke="#00AEEF" stroke-width="1"></line>
-
-      <!-- Rear door -->
-      <rect x="140" y="44" width="16" height="18" rx="1" fill="#003f6e"></rect>
-      <line x1="148" y1="44" x2="148" y2="62" stroke="#00AEEF" stroke-width="1"></line>
-
-      <!-- Front bumper/face -->
-      <rect x="2" y="52" width="7" height="12" rx="2" fill="#003f6e"></rect>
-      <!-- Headlights -->
-      <rect x="3" y="47" width="8" height="5" rx="1" fill="#fffde0"></rect>
-      <rect x="3" y="53" width="8" height="4" rx="1" fill="#ff9900" opacity="0.8"></rect>
-
-      <!-- Rear lights -->
-      <rect x="209" y="47" width="8" height="5" rx="1" fill="#ff3333" opacity="0.9"></rect>
-      <rect x="209" y="53" width="8" height="4" rx="1" fill="#ff3333" opacity="0.6"></rect>
-
-      <!-- Line number display box -->
-      <rect x="8" y="8" width="28" height="10" rx="2" fill="#ffcc00"></rect>
-      <text x="22" y="16" text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="7" fill="#000">444</text>
-
-      <!-- Destination display -->
-      <rect x="40" y="8" width="76" height="10" rx="2" fill="#1a1a1a"></rect>
-      <text x="78" y="16" text-anchor="middle" font-family="Arial,sans-serif" font-size="5.5" fill="#00AEEF" letter-spacing="0.3">VÄSTRA ORMINGE</text>
-
-      <!-- Front wheel -->
-      <circle cx="30" cy="65" r="11" fill="#1a1a1a"></circle>
-      <circle cx="30" cy="65" r="7" fill="#333"></circle>
-      <circle cx="30" cy="65" r="3.5" fill="#666"></circle>
-      <!-- Front wheel arch -->
-      <path d="M 18,58 Q 30,52 42,58" fill="none" stroke="#004a85" stroke-width="2"></path>
-
-      <!-- Rear front wheel -->
-      <circle cx="105" cy="65" r="11" fill="#1a1a1a"></circle>
-      <circle cx="105" cy="65" r="7" fill="#333"></circle>
-      <circle cx="105" cy="65" r="3.5" fill="#666"></circle>
-      <path d="M 93,58 Q 105,52 117,58" fill="none" stroke="#004a85" stroke-width="2"></path>
-
-      <!-- Rear section wheel 1 -->
-      <circle cx="152" cy="65" r="11" fill="#1a1a1a"></circle>
-      <circle cx="152" cy="65" r="7" fill="#333"></circle>
-      <circle cx="152" cy="65" r="3.5" fill="#666"></circle>
-      <path d="M 140,58 Q 152,52 164,58" fill="none" stroke="#003f6e" stroke-width="2"></path>
-
-      <!-- Rear section wheel 2 -->
-      <circle cx="196" cy="65" r="11" fill="#1a1a1a"></circle>
-      <circle cx="196" cy="65" r="7" fill="#333"></circle>
-      <circle cx="196" cy="65" r="3.5" fill="#666"></circle>
-      <path d="M 184,58 Q 196,52 208,58" fill="none" stroke="#003f6e" stroke-width="2"></path>
-
-      <!-- Ground shadow -->
-      <ellipse cx="110" cy="77" rx="108" ry="3" fill="rgba(0,0,0,0.2)"></ellipse>
+      <rect x="2" y="18" width="118" height="46" rx="5" fill="#005A9C"/>
+      <rect x="124" y="20" width="92" height="44" rx="5" fill="#005A9C"/>
+      <rect x="119" y="22" width="7" height="40" rx="2" fill="#003f6e"/>
+      <rect x="4" y="14" width="114" height="6" rx="3" fill="#004a85"/>
+      <rect x="125" y="16" width="89" height="6" rx="3" fill="#004a85"/>
+      <rect x="8" y="22" width="26" height="22" rx="2" fill="#a8d8f0"/>
+      <line x1="21" y1="22" x2="21" y2="44" stroke="#005A9C" stroke-width="1.5"/>
+      <rect x="40" y="23" width="18" height="16" rx="2" fill="#a8d8f0"/>
+      <rect x="62" y="23" width="18" height="16" rx="2" fill="#a8d8f0"/>
+      <rect x="84" y="23" width="18" height="16" rx="2" fill="#a8d8f0"/>
+      <rect x="130" y="24" width="16" height="16" rx="2" fill="#a8d8f0"/>
+      <rect x="150" y="24" width="16" height="16" rx="2" fill="#a8d8f0"/>
+      <rect x="170" y="24" width="16" height="16" rx="2" fill="#a8d8f0"/>
+      <rect x="190" y="24" width="16" height="16" rx="2" fill="#a8d8f0"/>
+      <rect x="2" y="44" width="118" height="5" fill="#00AEEF"/>
+      <rect x="124" y="44" width="92" height="5" fill="#00AEEF"/>
+      <rect x="28" y="44" width="14" height="18" rx="1" fill="#003f6e"/>
+      <rect x="140" y="44" width="16" height="18" rx="1" fill="#003f6e"/>
+      <rect x="3" y="47" width="8" height="5" rx="1" fill="#fffde0"/>
+      <rect x="209" y="47" width="8" height="5" rx="1" fill="#ff3333" opacity=".9"/>
+      <rect x="8" y="8" width="28" height="10" rx="2" fill="#ffcc00"/>
+      <text x="22" y="16" text-anchor="middle" font-family="Arial" font-weight="900" font-size="7" fill="#000">444</text>
+      <rect x="40" y="8" width="76" height="10" rx="2" fill="#1a1a1a"/>
+      <text x="78" y="16" text-anchor="middle" font-family="Arial" font-size="5.5" fill="#00AEEF">VASTRA ORMINGE</text>
+      <circle cx="30" cy="65" r="11" fill="#1a1a1a"/><circle cx="30" cy="65" r="7" fill="#333"/><circle cx="30" cy="65" r="3.5" fill="#666"/>
+      <circle cx="105" cy="65" r="11" fill="#1a1a1a"/><circle cx="105" cy="65" r="7" fill="#333"/><circle cx="105" cy="65" r="3.5" fill="#666"/>
+      <circle cx="152" cy="65" r="11" fill="#1a1a1a"/><circle cx="152" cy="65" r="7" fill="#333"/><circle cx="152" cy="65" r="3.5" fill="#666"/>
+      <circle cx="196" cy="65" r="11" fill="#1a1a1a"/><circle cx="196" cy="65" r="7" fill="#333"/><circle cx="196" cy="65" r="3.5" fill="#666"/>
+      <ellipse cx="110" cy="77" rx="108" ry="3" fill="rgba(0,0,0,0.2)"/>
     </svg>
     <div>
       <h1>SL Traffik Tracker</h1>
-      <p>Västra Orminge · Nacka</p>
+      <p>V&auml;stra Orminge &middot; Nacka</p>
     </div>
   </div>
   <div class="datetime">
-    <div class="date" id="date">Sunday, 3 May 2026</div>
-    <div class="time" id="clock">12:48:51</div>
+    <div class="date" id="date">&mdash;</div>
+    <div class="time" id="clock">--:--</div>
   </div>
 </header>
 
 <div class="statusbar">
-  <div class="dot ok" id="dot"></div>
-  <span id="stxt">Uppdaterad 12:48</span>
-  <button class="rfbtn" onclick="fetchAll()">↻ Uppdatera</button>
-  <span id="cdtxt" style="margin-left:4px">· om 47s</span>
+  <div class="dot" id="dot"></div>
+  <span id="stxt">Startar&hellip;</span>
+  <span id="cdtxt" style="margin-left:2px"></span>
+  <button class="rfbtn" onclick="fetchAll()">&circlearrowleft; Uppdatera</button>
 </div>
 
-<main>
-  <!-- Stop 1: Skarpövägen -->
-  <div class="stop-block">
-    <div class="stop-head">
-      <div>
-        <div class="name">Skarpövägen</div>
-        <div class="area">Västra Orminge</div>
-      </div>
-      <span class="badge badge-b">Hållplats 1</span>
-    </div>
-    <div class="dir-row">
-      <div class="dir-panel" id="skarpo-city" style="border-right:none;"><div class="dir-header">
-    <div class="dir-icon city">↗</div>
-    <span class="dir-label city">Towards City</span>
-  </div><div class="row">
-    <div class="lbadge city-line">471</div>
-    <div class="dest">
-      <div class="d">Slussen</div>
-      
-    </div>
-    <div class="tcountdown">
-      <div class="tprimary now">Nu</div>
-    </div>
-    <div class="ttime ">12:48</div>
-  </div><div class="row">
-    <div class="lbadge city-line">444</div>
-    <div class="dest">
-      <div class="d">Slussen</div>
-      
-    </div>
-    <div class="tcountdown">
-      <div class="tprimary ">13 min</div>
-    </div>
-    <div class="ttime ">13:02</div>
-  </div><div class="row">
-    <div class="lbadge city-line">471</div>
-    <div class="dest">
-      <div class="d">Slussen</div>
-      
-    </div>
-    <div class="tcountdown">
-      <div class="tprimary ">16 min</div>
-    </div>
-    <div class="ttime ">13:04</div>
-  </div><div class="row">
-    <div class="lbadge city-line">444</div>
-    <div class="dest">
-      <div class="d">Slussen</div>
-      
-    </div>
-    <div class="tcountdown">
-      <div class="tprimary ">28 min</div>
-    </div>
-    <div class="ttime ">13:17</div>
-  </div><div class="row">
-    <div class="lbadge city-line">471</div>
-    <div class="dest">
-      <div class="d">Slussen</div>
-      
-    </div>
-    <div class="tcountdown">
-      <div class="tprimary ">31 min</div>
-    </div>
-    <div class="ttime ">13:19</div>
-  </div><div class="row">
-    <div class="lbadge city-line">444</div>
-    <div class="dest">
-      <div class="d">Slussen</div>
-      
-    </div>
-    <div class="tcountdown">
-      <div class="tprimary ">43 min</div>
-    </div>
-    <div class="ttime ">13:32</div>
-  </div></div>
-    </div>
+<!-- Stop selector -->
+<div class="selector-wrap">
+  <div class="selector-card">
+    <label>&#128205; Viewing stop</label>
+    <select class="stop-select" id="stopSelect" onchange="onStopChange()">
+      <optgroup label="&#8599; Towards City stops">
+        <option value="vastram">V&auml;stra Orminge (Terminus)</option>
+        <option value="namdostigen">N&auml;md&ouml;stigen</option>
+        <option value="husarostigen">Hus&auml;r&ouml;stigen</option>
+        <option value="korsostigen">Kors&ouml;stigen</option>
+        <option value="skarpo" selected>Skarp&ouml;v&auml;gen &#x2605;</option>
+        <option value="korset">Korset</option>
+        <option value="sarvtrask">Sarvtr&auml;sk</option>
+        <option value="orminge">Orminge Centrum</option>
+      </optgroup>
+    </select>
+    <div class="sel-note">Changing stop updates all panels. The selected stop&#39;s site ID is resolved automatically.</div>
   </div>
+</div>
 
-  <!-- Stop 2: Orminge Centrum -->
-  <div class="stop-block">
-    <div class="stop-head">
-      <div>
-        <div class="name">Orminge Centrum</div>
-        <div class="area">Västra Orminge</div>
+<!-- Towards City -->
+<div class="wrap">
+  <div class="card">
+    <div class="card-head">
+      <div class="ch-icon city">&#8599;</div>
+      <span class="ch-title">Towards City</span>
+      <span class="ch-sub">&middot; Departures from selected stop</span>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <div class="col-head" id="head-city-left">&#8594; Slussen / City</div>
+        <div id="city-left"><div class="loader"><div class="spinner"></div></div></div>
       </div>
-      <span class="badge badge-g">Hållplats 2</span>
-    </div>
-    <div class="dir-row">
-      <div class="dir-panel" id="orminge-city" style="border-right:none;"><div class="dir-header">
-    <div class="dir-icon city">↗</div>
-    <span class="dir-label city">Towards City</span>
-  </div><div class="row">
-    <div class="lbadge city-line">422</div>
-    <div class="dest">
-      <div class="d">Gustavsberg Lugnet</div>
-      
-    </div>
-    <div class="tcountdown">
-      <div class="tprimary late">Nu</div>
-    </div>
-    <div class="ttime late">12:47</div>
-  </div><div class="row">
-    <div class="lbadge city-line">416</div>
-    <div class="dest">
-      <div class="d">Telegrafberget</div>
-      
-    </div>
-    <div class="tcountdown">
-      <div class="tprimary late">Nu</div>
-    </div>
-    <div class="ttime late">12:47</div>
-  </div><div class="row">
-    <div class="lbadge city-line">422</div>
-    <div class="dest">
-      <div class="d">Slussen</div>
-      
-    </div>
-    <div class="tcountdown">
-      <div class="tprimary late">2 min</div>
-    </div>
-    <div class="ttime late">12:50</div>
-  </div><div class="row">
-    <div class="lbadge city-line">444</div>
-    <div class="dest">
-      <div class="d">Slussen</div>
-      
-    </div>
-    <div class="tcountdown">
-      <div class="tprimary late">5 min</div>
-    </div>
-    <div class="ttime late">12:54</div>
-  </div><div class="row">
-    <div class="lbadge city-line">471</div>
-    <div class="dest">
-      <div class="d">Slussen</div>
-      
-    </div>
-    <div class="tcountdown">
-      <div class="tprimary late">7 min</div>
-    </div>
-    <div class="ttime late">12:55</div>
-  </div><div class="row">
-    <div class="lbadge city-line">418</div>
-    <div class="dest">
-      <div class="d">Gustavsvik</div>
-      
-    </div>
-    <div class="tcountdown">
-      <div class="tprimary ">14 min</div>
-    </div>
-    <div class="ttime ">13:03</div>
-  </div><div class="row">
-    <div class="lbadge city-line">421</div>
-    <div class="dest">
-      <div class="d">Kummelnäs Vikingshill</div>
-      
-    </div>
-    <div class="tcountdown">
-      <div class="tprimary ">14 min</div>
-    </div>
-    <div class="ttime ">13:03</div>
-  </div><div class="row">
-    <div class="lbadge city-line">444</div>
-    <div class="dest">
-      <div class="d">Slussen</div>
-      
-    </div>
-    <div class="tcountdown">
-      <div class="tprimary ">19 min</div>
-    </div>
-    <div class="ttime ">13:08</div>
-  </div></div>
-    </div>
-  </div>
-</main>
-
-<!-- From Slussen row -->
-<div class="from-slussen">
-  <div class="from-slussen-card">
-    <div class="from-slussen-head">
-      <div class="fs-icon">↙</div>
-      <span class="fs-title">From Slussen</span>
-      <span class="fs-sub">· Incoming buses towards Orminge</span>
-    </div>
-    <div class="from-slussen-cols">
-      <div class="fs-col">
-        <div class="fs-col-head">→ Skarpövägen</div>
-        <div id="fs-skarpo"><div class="row">
-        <div class="lbadge from-line">471</div>
-        <div class="dest"><div class="d">Västra Orminge</div></div>
-        <div class="tcountdown"><div class="tprimary soon">4 min</div></div>
-        <div class="ttime ">12:53</div>
-      </div><div class="row">
-        <div class="lbadge from-line">471</div>
-        <div class="dest"><div class="d">Västra Orminge</div></div>
-        <div class="tcountdown"><div class="tprimary ">19 min</div></div>
-        <div class="ttime ">13:08</div>
-      </div><div class="row">
-        <div class="lbadge from-line">471</div>
-        <div class="dest"><div class="d">Västra Orminge</div></div>
-        <div class="tcountdown"><div class="tprimary ">34 min</div></div>
-        <div class="ttime ">13:23</div>
-      </div></div>
-      </div>
-      <div class="fs-col">
-        <div class="fs-col-head">→ Orminge Centrum</div>
-        <div id="fs-orminge"><div class="row">
-        <div class="lbadge from-line">444</div>
-        <div class="dest"><div class="d">Västra Orminge</div></div>
-        <div class="tcountdown"><div class="tprimary now">2 min</div></div>
-        <div class="ttime ">12:51</div>
-      </div><div class="row">
-        <div class="lbadge from-line">471</div>
-        <div class="dest"><div class="d">Västra Orminge</div></div>
-        <div class="tcountdown"><div class="tprimary soon">4 min</div></div>
-        <div class="ttime ">12:53</div>
-      </div><div class="row">
-        <div class="lbadge from-line">444</div>
-        <div class="dest"><div class="d">Västra Orminge</div></div>
-        <div class="tcountdown"><div class="tprimary ">17 min</div></div>
-        <div class="ttime ">13:06</div>
-      </div><div class="row">
-        <div class="lbadge from-line">471</div>
-        <div class="dest"><div class="d">Västra Orminge</div></div>
-        <div class="tcountdown"><div class="tprimary ">19 min</div></div>
-        <div class="ttime ">13:08</div>
-      </div><div class="row">
-        <div class="lbadge from-line">444</div>
-        <div class="dest"><div class="d">Västra Orminge</div></div>
-        <div class="tcountdown"><div class="tprimary ">32 min</div></div>
-        <div class="ttime ">13:21</div>
-      </div><div class="row">
-        <div class="lbadge from-line">471</div>
-        <div class="dest"><div class="d">Västra Orminge</div></div>
-        <div class="tcountdown"><div class="tprimary ">34 min</div></div>
-        <div class="ttime ">13:23</div>
-      </div></div>
+      <div class="col">
+        <div class="col-head" id="head-city-right">&#8594; Cityterminalen (446C)</div>
+        <div id="city-right"><div class="loader"><div class="spinner"></div></div></div>
       </div>
     </div>
   </div>
 </div>
 
-<footer>Data från Trafiklab.se · SL Transport API</footer>
+<!-- From Slussen -->
+<div class="wrap">
+  <div class="card">
+    <div class="card-head">
+      <div class="ch-icon from">&#8601;</div>
+      <span class="ch-title">From Slussen</span>
+      <span class="ch-sub">&middot; Towards Orminge</span>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <div class="col-head">&#8594; V&auml;stra Orminge (471)</div>
+        <div id="fs-skarpo"><div class="loader"><div class="spinner"></div></div></div>
+      </div>
+      <div class="col">
+        <div class="col-head">&#8594; Orminge Centrum (444)</div>
+        <div id="fs-orminge"><div class="loader"><div class="spinner"></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- From Cityterminalen -->
+<div class="wrap">
+  <div class="card">
+    <div class="card-head">
+      <div class="ch-icon from">&#8601;</div>
+      <span class="ch-title">From Cityterminalen</span>
+      <span class="ch-sub">&middot; Towards Orminge (446C weekdays)</span>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <div class="col-head">&#8594; V&auml;stra Orminge</div>
+        <div id="ct-skarpo"><div class="loader"><div class="spinner"></div></div></div>
+      </div>
+      <div class="col">
+        <div class="col-head">&#8594; Orminge Centrum</div>
+        <div id="ct-orminge"><div class="loader"><div class="spinner"></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>Data fr&aring;n Trafiklab.se &middot; SL Transport API</footer>
 
 <script>
-/* ── Orminge-direction termini ── */
-const ORMINGE_TERMINI=['västra orminge','nämdöstigen','husaröstigen','korsöstigen'];
+/* ════════════════════════════════════════════════════
+   STOP DEFINITIONS
+   siteId: null means resolved at runtime via SL API
+   ════════════════════════════════════════════════════ */
+const STOPS_DEF = {
+  vastram:      {name:'Västra Orminge',    siteId:'9527', search:'Västra Orminge'},
+  namdostigen:  {name:'Nämdöstigen',       siteId:'9528', search:'Nämdöstigen'},
+  husarostigen: {name:'Husaröstigen',      siteId:'9529', search:'Husaröstigen'},
+  korsostigen:  {name:'Korsöstigen',       siteId:'9530', search:'Korsöstigen'},
+  skarpo:       {name:'Skarpövägen',       siteId:null,   search:'Skarpövägen'},
+  korset:       {name:'Korset',            siteId:null,   search:'Korset'},
+  sarvtrask:    {name:'Sarvträsk',         siteId:null,   search:'Sarvträsk'},
+  orminge:      {name:'Orminge centrum',   siteId:null,   search:'Orminge centrum'},
+};
 
-const STOPS=[
-  {id:'skarpo',  cityEl:'skarpo-city',  siteId:null, search:'Skarpövägen'},
-  {id:'orminge', cityEl:'orminge-city', siteId:null, search:'Orminge centrum'}
-];
-const VERIFY_LINES={skarpo:['444','446','471'],orminge:['444','446','471']};
-const SL_BASE='https://transport.integration.sl.se/v1';
-const SLUSSEN_SITE='9192'; /* Verified site ID for Slussen bus terminal */
+const SL          = 'https://transport.integration.sl.se/v1';
+const SLUSSEN_ID  = '9192';
+const CITYTERM_ID = '9180';
 
-let cdTimer=null,rfTimer=null,secs=60,sitesCache=null,firstRun=true;
+/* Lines that go towards Västra Orminge (stop at Skarpövägen) */
+const SKARPO_LINES = ['471','446C'];
+/* Lines that serve Orminge centrum */
+const ORMINGE_LINES = ['444','445','471','446C','492','496'];
+/* Destinations that mean "heading into Orminge" (exclude from Towards City) */
+const ORMINGE_DEST = ['västra orminge','nämdöstigen','husaröstigen','korsöstigen'];
 
-/* ── Clock + date ── */
-const DAY_NAMES=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-const MONTH_NAMES=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+let currentStopKey = 'skarpo';
+let resolvedIds = {}; /* cache siteId per stopKey */
+let cdTimer = null, rfTimer = null, secs = 60;
 
+/* ── Clock ── */
+const DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 function tick(){
   const n=new Date();
   document.getElementById('clock').textContent=
     [n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');
   document.getElementById('date').textContent=
-    DAY_NAMES[n.getDay()]+', '+n.getDate()+' '+MONTH_NAMES[n.getMonth()]+' '+n.getFullYear();
+    DAYS[n.getDay()]+', '+n.getDate()+' '+MONTHS[n.getMonth()]+' '+n.getFullYear();
 }
-setInterval(tick,500);tick();
+setInterval(tick,500); tick();
 
 /* ── Status ── */
 function setStatus(cls,txt){
@@ -608,322 +298,214 @@ function setStatus(cls,txt){
   document.getElementById('stxt').textContent=txt;
 }
 function startCountdown(){
-  secs=59;
-  if(cdTimer)clearInterval(cdTimer);
+  secs=59; if(cdTimer)clearInterval(cdTimer);
   cdTimer=setInterval(()=>{
     secs--;
-    document.getElementById('cdtxt').textContent=secs>0?'· om '+secs+'s':'';
+    document.getElementById('cdtxt').textContent=secs>0?'· '+secs+'s':'';
     if(secs<=0)clearInterval(cdTimer);
   },1000);
 }
 
 /* ── Utils ── */
-function esc(s){
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function minsUntil(d){if(!d)return null;return Math.round((new Date(d)-Date.now())/60000);}
-function fmt(d){
-  if(!d)return'--';
-  const x=new Date(d);
-  return[x.getHours(),x.getMinutes()].map(n=>String(n).padStart(2,'0')).join(':');
-}
-function isFromCity(dep){
+function fmtTime(d){if(!d)return'--';const x=new Date(d);return[x.getHours(),x.getMinutes()].map(n=>String(n).padStart(2,'0')).join(':');}
+function isOrmingeDir(dep){
   const dest=(dep.destination||dep.direction||'').toLowerCase();
-  return ORMINGE_TERMINI.some(t=>dest.includes(t));
+  return ORMINGE_DEST.some(t=>dest.includes(t));
 }
 
-/* ── Claude API proxy (bypasses CORS) ── */
-async function claudeFetch(url){
-  const resp=await fetch('https://api.anthropic.com/v1/messages',{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({
-      model:'claude-sonnet-4-20250514',
-      max_tokens:6000,
-      system:'You are a data proxy. Fetch the given URL and return ONLY the raw JSON body. No explanation, no markdown, no code fences.',
-      messages:[{role:'user',content:'Fetch and return the raw JSON from: '+url}],
-      tools:[{type:'web_search_20250305',name:'web_search'}]
-    })
-  });
-  if(!resp.ok)throw new Error('Anthropic API '+resp.status);
-  const d=await resp.json();
-  const txt=(d.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('')
-    .replace(/^```(?:json)?\s*/,'').replace(/\s*```$/,'').trim();
-  if(!txt)throw new Error('Empty API response');
-  return JSON.parse(txt);
-}
-
-/* ── Direct fetch + proxy fallbacks ── */
+/* ── Fetch with proxy fallbacks + Claude API ── */
 const PROXIES=[
   u=>`https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
-  u=>`https://cors.x2u.in/?${encodeURIComponent(u)}`,
   u=>`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
+  u=>`https://corsproxy.io/?url=${encodeURIComponent(u)}`,
 ];
-async function directFetch(url){
-  /* Try direct — works when served from GitHub Pages or home screen */
+async function slFetch(url){
+  /* Direct fetch first (works when served from GitHub Pages) */
   try{
-    const r=await fetch(url,{signal:AbortSignal.timeout(6000)});
+    const r=await fetch(url,{signal:AbortSignal.timeout(5000)});
     if(r.ok)return await r.json();
   }catch(e){}
   /* Try CORS proxies */
   for(const mk of PROXIES){
     try{
-      const r=await fetch(mk(url),{signal:AbortSignal.timeout(10000)});
-      if(r.ok){const t=await r.text();return JSON.parse(t);}
+      const r=await fetch(mk(url),{signal:AbortSignal.timeout(7000)});
+      if(r.ok)return JSON.parse(await r.text());
     }catch(e){continue;}
   }
-  throw new Error('All proxies failed');
-}
-async function slFetch(url){
-  try{return await directFetch(url);}
-  catch(e){return await claudeFetch(url);}
+  /* Claude API fallback — server-side fetch bypasses CORS */
+  const resp=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      model:'claude-sonnet-4-20250514',max_tokens:4000,
+      system:'You are a data proxy. Fetch the given URL and return ONLY the raw JSON. No explanation, no markdown.',
+      messages:[{role:'user',content:'Fetch this URL and return only the JSON: '+url}],
+      tools:[{type:'web_search_20250305',name:'web_search'}]
+    })
+  });
+  if(!resp.ok)throw new Error('All fetch methods failed');
+  const d=await resp.json();
+  const txt=(d.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('')
+    .replace(/^```(?:json)?\s*/,'').replace(/\s*```$/,'').trim();
+  return JSON.parse(txt);
 }
 
-/* ── Verified site ID resolution ── */
-async function verifyStop(siteId,lines){
+/* ── Resolve site ID for a stop key ── */
+async function resolveSiteId(stopKey){
+  if(resolvedIds[stopKey])return resolvedIds[stopKey];
+  const def=STOPS_DEF[stopKey];
+  if(def.siteId){resolvedIds[stopKey]=def.siteId;return def.siteId;}
+  /* Fetch sites list and find by name */
   try{
-    /* Direct fetch with short timeout — no proxy chain needed for verification */
-    const ctrl=new AbortController();
-    const tid=setTimeout(()=>ctrl.abort(),4000);
-    const r=await fetch(SL_BASE+'/sites/'+siteId+'/departures',{signal:ctrl.signal});
-    clearTimeout(tid);
-    if(!r.ok)return false;
-    const d=await r.json();
-    const found=new Set((d.departures||[]).map(x=>x.line&&x.line.designation).filter(Boolean));
-    return lines.some(l=>found.has(l));
-  }catch(e){return false;}
-}
-/* Known-good site IDs — avoids slow verification on every load */
-const KNOWN_SITE_IDS={
-  'skarpo': null,   /* resolved dynamically — no hardcoded ID */
-  'orminge': null   /* resolved dynamically — no hardcoded ID */
-};
-
-async function resolveIds(){
-  const need=STOPS.filter(s=>!s.siteId&&s.search);
-  if(!need.length)return;
-
-  /* Show loading in both panels while resolving */
-  for(const stop of need){
-    document.getElementById(stop.cityEl).innerHTML=
-      '<div class="loader"><div class="spinner"></div></div>';
-  }
-
-  try{
-    /* Fetch sites list once */
-    if(!sitesCache){
-      sitesCache=await slFetch(SL_BASE+'/sites?expand=false');
-    }
-    const sites=Array.isArray(sitesCache)?sitesCache:[];
-
-    for(const stop of need){
-      const needle=stop.search.toLowerCase();
-      /* Collect all name matches */
-      const exact  =sites.filter(s=>s.name&&s.name.toLowerCase()===needle);
-      const partial=sites.filter(s=>s.name&&s.name.toLowerCase().includes(needle)
-                                    &&s.name.toLowerCase()!==needle);
-      const candidates=[...exact,...partial];
-
-      if(!candidates.length){
-        console.warn('No candidates for',stop.search);
-        document.getElementById(stop.cityEl).innerHTML=
-          '<div class="msg">Hållplats ej hittad</div>';
-        continue;
-      }
-
-      /* Try candidates — pick first that has right buses */
-      const reqLines=VERIFY_LINES[stop.id]||['444','471'];
-      let found=null;
-      /* Try up to 5 candidates with a short timeout each */
-      for(const c of candidates.slice(0,8)){
-        try{
-          const ok=await verifyStop(String(c.id),reqLines);
-          if(ok){found=c;break;}
-        }catch(e){continue;}
-      }
-
-      if(found){
-        stop.siteId=String(found.id);
-        console.log('Resolved',stop.search,'->',found.id,found.name);
-      } else {
-        /* Fallback: just use the first candidate */
-        stop.siteId=String(candidates[0].id);
-        console.warn('Using fallback site',candidates[0].id,'for',stop.search);
-      }
-    }
-  }catch(e){
-    console.error('resolveIds error:',e);
-    /* On total failure try fetching directly from Slussen departures to test connectivity */
-    for(const stop of need){
-      if(!stop.siteId){
-        document.getElementById(stop.cityEl).innerHTML=
-          '<div class="msg">Nätverksfel – kontrollera anslutning</div>';
-      }
-    }
-  }
+    const sites=await slFetch(SL+'/sites?expand=false');
+    if(!Array.isArray(sites))throw new Error('Bad response');
+    const needle=def.search.toLowerCase();
+    const exact=sites.find(s=>s.name&&s.name.toLowerCase()===needle);
+    const partial=sites.find(s=>s.name&&s.name.toLowerCase().includes(needle));
+    const match=exact||partial;
+    if(match){resolvedIds[stopKey]=String(match.id);return resolvedIds[stopKey];}
+  }catch(e){console.warn('resolveSiteId failed for',stopKey,e);}
+  return null;
 }
 
 /* ── Build one departure row ── */
-function depRow(dep,dir){
+function depRow(dep,badgeClass){
   const line=dep.line?dep.line.designation:'?';
   const dest=dep.destination||dep.direction||'Okänd';
   const exp=dep.expected||dep.scheduled;
-  const sched=dep.scheduled;
   const isDelayed=dep.expected&&dep.scheduled&&dep.expected!==dep.scheduled
                   &&new Date(dep.expected)>new Date(dep.scheduled);
   const mins=minsUntil(exp);
-
-  /* ── Countdown label (left time col) ── */
   let tc='',tl='';
-  if(mins===null){tl='--';}
+  if(mins===null)tl='--';
   else if(mins<=0){tl='Nu';tc='now';}
   else if(mins<=2){tl=mins+' min';tc='now';}
   else if(mins<=5){tl=mins+' min';tc='soon';}
-  else{tl=mins+' min';}        /* always show minutes */
+  else tl=mins+' min';
   if(isDelayed)tc='late';
-
-  /* ── Clock time (right time col) — always hh:mm of expected ── */
-  const clockTime=fmt(exp);    /* hh:mm */
-  const timeClass=isDelayed?'late':'';
-
-  return `<div class="row">
-    <div class="lbadge ${dir}-line">${esc(line)}</div>
-    <div class="dest">
-      <div class="d">${esc(dest)}</div>
-      ${dep.via?'<div class="v">via '+esc(dep.via)+'</div>':''}
-    </div>
-    <div class="tcountdown">
-      <div class="tprimary ${tc}">${esc(tl)}</div>
-    </div>
-    <div class="ttime ${timeClass}">${esc(clockTime)}</div>
-  </div>`;
+  return '<div class="row">'
+    +'<div class="lb '+badgeClass+'">'+esc(line)+'</div>'
+    +'<div class="dest"><div class="d">'+esc(dest)+'</div></div>'
+    +'<div class="tc"><div class="tp '+tc+'">'+esc(tl)+'</div></div>'
+    +'<div class="tt '+(isDelayed?'late':'')+'">'+esc(fmtTime(exp))+'</div>'
+    +'</div>';
 }
+const noMsg='<div class="msg">Inga avg\u00e5ngar just nu</div>';
+const errMsg='<div class="msg">Kunde inte h\u00e4mta data</div>';
 
-/* ── Build a direction panel's inner HTML ── */
-function panelHtml(deps,dir,devHtml){
-  const rows = deps.length
-    ? deps.slice(0,8).map(d=>depRow(d,dir)).join('')
-    : '<div class="msg">Inga avg&#229;ngar just nu</div>';
-  return `<div class="dir-header">
-    <div class="dir-icon city">&#8599;</div>
-    <span class="dir-label city">Towards City</span>
-  </div>${devHtml||''}${rows}`;
-}
-
-/* ── Render both panels for a stop ── */
-function render(stop,data){
+/* ── Render Towards City ── */
+function renderCity(data){
   if(!data||!data.departures){
-    document.getElementById(stop.cityEl).innerHTML='<div class="msg">Inga data</div>';
-    document.getElementById(stop.fromEl).innerHTML='';
+    document.getElementById('city-left').innerHTML=errMsg;
+    document.getElementById('city-right').innerHTML=errMsg;
     return;
   }
-  let devHtml='';
-  if(data.stop_deviations&&data.stop_deviations.length){
-    const m=data.stop_deviations[0].message;
-    if(m)devHtml='<div class="devbanner">&#9888; '+esc(m)+'</div>';
-  }
-  const buses=data.departures.filter(d=>d.line&&(!d.line.transport_mode||d.line.transport_mode==='BUS'));
-  const cityDeps=buses.filter(d=>!isFromCity(d));
-  const fromDeps=buses.filter(d=> isFromCity(d));
-  document.getElementById(stop.cityEl).innerHTML=panelHtml(cityDeps,'city',devHtml);
+  const buses=data.departures.filter(d=>
+    d.line&&(!d.line.transport_mode||d.line.transport_mode==='BUS')&&!isOrmingeDir(d)
+  );
+  /* Left: all city-bound except 446C */
+  const left=buses.filter(d=>d.line.designation!=='446'&&d.line.designation!=='446C');
+  /* Right: 446C towards Cityterminalen only */
+  const right=buses.filter(d=>d.line.designation==='446C');
+  document.getElementById('city-left').innerHTML=
+    left.length?left.slice(0,8).map(d=>depRow(d,'city-line')).join(''):noMsg;
+  document.getElementById('city-right').innerHTML=
+    right.length?right.slice(0,8).map(d=>depRow(d,'city-line')).join(''):noMsg;
 }
 
-
-
-/* ── Render From Slussen columns ── */
-function renderFromSlussen(data){
+/* ── Render inbound panels (From Slussen / From Cityterminalen) ── */
+function renderInbound(data, leftId, rightId){
   if(!data||!data.departures){
-    document.getElementById('fs-skarpo').innerHTML='<div class="msg">Inga data</div>';
-    document.getElementById('fs-orminge').innerHTML='<div class="msg">Inga data</div>';
+    document.getElementById(leftId).innerHTML=errMsg;
+    document.getElementById(rightId).innerHTML=errMsg;
     return;
   }
-
-  /* Only buses heading toward Orminge direction */
-  const ormingeBound=data.departures.filter(d=>{
+  const buses=data.departures.filter(d=>{
     if(!d.line||d.line.transport_mode!=='BUS')return false;
     const dest=(d.destination||d.direction||'').toLowerCase();
-    /* Lines that serve our stops heading to Orminge */
-    const goodLines=['444','445','446','471','492','496'];
-    return goodLines.includes(d.line.designation);
+    return dest.includes('orminge')||dest.includes('västra')||
+           dest.includes('nämd')||dest.includes('husär');
   });
-
-  /* Split: buses that stop at Skarpövägen (471, 446) vs Orminge Centrum (444, 445, 471, 446 etc.) */
-  const skarpoLines=['471','446'];
-  const ormingeLines=['444','445','446','471','492','496'];
-
-  const skarpoDeps=ormingeBound.filter(d=>skarpoLines.includes(d.line.designation));
-  const ormingeDeps=ormingeBound.filter(d=>ormingeLines.includes(d.line.designation));
-
-  function colHtml(deps){
-    if(!deps.length)return'<div class="msg">Inga avg&#229;ngar just nu</div>';
-    return deps.slice(0,7).map(dep=>{
-      const line=dep.line.designation;
-      const dest=dep.destination||dep.direction||'';
-      const exp=dep.expected||dep.scheduled;
-      const isDelayed=dep.expected&&dep.scheduled&&dep.expected!==dep.scheduled
-                      &&new Date(dep.expected)>new Date(dep.scheduled);
-      const mins=minsUntil(exp);
-      let tc='',tl='';
-      if(mins===null){tl='--';}
-      else if(mins<=0){tl='Nu';tc='now';}
-      else if(mins<=2){tl=mins+' min';tc='now';}
-      else if(mins<=5){tl=mins+' min';tc='soon';}
-      else{tl=mins+' min';}
-      if(isDelayed)tc='late';
-      const clockTime=fmt(exp);
-      const timeClass=isDelayed?'late':'';
-      return `<div class="row">
-        <div class="lbadge from-line">${esc(line)}</div>
-        <div class="dest"><div class="d">${esc(dest)}</div></div>
-        <div class="tcountdown"><div class="tprimary ${tc}">${esc(tl)}</div></div>
-        <div class="ttime ${timeClass}">${esc(clockTime)}</div>
-      </div>`;
-    }).join('');
-  }
-
-  document.getElementById('fs-skarpo').innerHTML=colHtml(skarpoDeps);
-  document.getElementById('fs-orminge').innerHTML=colHtml(ormingeDeps);
+  const left=buses.filter(d=>SKARPO_LINES.includes(d.line.designation));
+  const right=buses.filter(d=>ORMINGE_LINES.includes(d.line.designation));
+  document.getElementById(leftId).innerHTML=
+    left.length?left.slice(0,7).map(d=>depRow(d,'from-line')).join(''):noMsg;
+  document.getElementById(rightId).innerHTML=
+    right.length?right.slice(0,7).map(d=>depRow(d,'from-line')).join(''):noMsg;
 }
 
+/* ── Update column headers when stop changes ── */
+function updateHeaders(){
+  const stopName=STOPS_DEF[currentStopKey].name;
+  document.getElementById('head-city-left').textContent='→ Slussen / City from '+stopName;
+  document.getElementById('head-city-right').textContent='→ Cityterminalen (446C) from '+stopName;
+}
+
+/* ── Handle stop selector change ── */
+function onStopChange(){
+  currentStopKey=document.getElementById('stopSelect').value;
+  updateHeaders();
+  if(rfTimer){clearTimeout(rfTimer);rfTimer=null;}
+  fetchAll();
+}
+
+/* ── Main fetch ── */
 async function fetchAll(){
   if(rfTimer){clearTimeout(rfTimer);rfTimer=null;}
-  setStatus('spin','Hämtar avg&#229;ngar&#8230;');
-  if(firstRun){
-    firstRun=false;
-    setStatus('spin','Hittar h&#229;llplatser&#8230;');
-    await resolveIds();
-    setStatus('spin','Hämtar avg&#229;ngar&#8230;');
-  }
+  setStatus('spin','H\u00e4mtar avg\u00e5ngar\u2026');
+
   let anyErr=false;
-  for(const stop of STOPS){
-    if(!stop.siteId){anyErr=true;continue;}
+
+  /* Resolve site ID for selected stop */
+  const siteId=await resolveSiteId(currentStopKey);
+
+  /* Towards City */
+  if(siteId){
     try{
-      const data=await slFetch(SL_BASE+'/sites/'+stop.siteId+'/departures');
-      render(stop,data);
+      const d=await slFetch(SL+'/sites/'+siteId+'/departures');
+      renderCity(d);
     }catch(e){
       anyErr=true;
-      document.getElementById(stop.cityEl).innerHTML='<div class="msg">Fel: '+esc(String(e))+'</div>';
+      document.getElementById('city-left').innerHTML=errMsg;
+      document.getElementById('city-right').innerHTML=errMsg;
     }
+  }else{
+    anyErr=true;
+    document.getElementById('city-left').innerHTML='<div class="msg">H\u00e5llplats ej hittad</div>';
+    document.getElementById('city-right').innerHTML='';
   }
-  /* Fetch From Slussen data */
+
+  /* From Slussen */
   try{
-    const slData=await slFetch(SL_BASE+'/sites/'+SLUSSEN_SITE+'/departures');
-    renderFromSlussen(slData);
+    const d=await slFetch(SL+'/sites/'+SLUSSEN_ID+'/departures');
+    renderInbound(d,'fs-skarpo','fs-orminge');
   }catch(e){
-    document.getElementById('fs-skarpo').innerHTML='<div class="msg">Kunde inte h&#228;mta data</div>';
-    document.getElementById('fs-orminge').innerHTML='';
+    anyErr=true;
+    document.getElementById('fs-skarpo').innerHTML=errMsg;
+    document.getElementById('fs-orminge').innerHTML=errMsg;
+  }
+
+  /* From Cityterminalen */
+  try{
+    const d=await slFetch(SL+'/sites/'+CITYTERM_ID+'/departures');
+    renderInbound(d,'ct-skarpo','ct-orminge');
+  }catch(e){
+    anyErr=true;
+    document.getElementById('ct-skarpo').innerHTML=errMsg;
+    document.getElementById('ct-orminge').innerHTML=errMsg;
   }
 
   const t=new Date().toLocaleTimeString('sv-SE',{hour:'2-digit',minute:'2-digit'});
-  setStatus(anyErr?'err':'ok',anyErr?'Problem · Senast: '+t:'Uppdaterad '+t);
+  setStatus(anyErr?'err':'ok',anyErr?'Problem \u00b7 Senast: '+t:'Uppdaterad '+t);
   startCountdown();
   rfTimer=setTimeout(fetchAll,60000);
 }
 
+/* ── Init ── */
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)fetchAll();});
+updateHeaders();
 fetchAll();
 </script>
-
-
-</body></html>
+</body>
+</html>
